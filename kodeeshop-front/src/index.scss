@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  color: #232323;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  color: #0b88ee;
+}
+
+button,
+input {
+  outline: none;
+}
+
+p {
+  font-size: 14px;
+  letter-spacing: 0;
+  margin: 0;
+}

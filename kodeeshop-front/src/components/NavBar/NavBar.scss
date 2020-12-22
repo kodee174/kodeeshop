@@ -1,0 +1,24 @@
+.navbar {
+  display: flex;
+  padding: 14px 0;
+  &__list {
+    display: flex;
+    align-items: center;
+    li {
+      padding: 14px 8px;
+      text-transform: uppercase;
+      &:first-child{
+        padding-left: 0;
+      }
+    }
+    &--current a {
+      color: #2879fe;
+    }
+    &--right {
+      margin-left: auto;
+      li {
+        text-transform: capitalize;
+      }
+    }
+  }
+}

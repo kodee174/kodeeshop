@@ -1,0 +1,326 @@
+import React, {Component} from 'react';
+import './App.scss';
+import {Container, Grid} from '@material-ui/core';
+import TagItem from './components/TagItem';
+import CollectionList from './components/CollectionList';
+import ProductItem from './components/ProductItem';
+import TagList from './components/TagList';
+import BannerBox from './components/BannerBox';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ProductQuickView from './components/ProductQuickView';
+import TagService from './services/TagService';
+
+interface AppProps {}
+
+interface AppState {
+  show: boolean;
+}
+
+class App extends Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+    this.state = {
+      show: false,
+    };
+    console.log(TagService.getTags());
+  }
+
+  handleAddToCart = () => {
+    const {show} = this.state;
+    this.setState({
+      show: !show,
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      show: false,
+    });
+  };
+
+  render = () => {
+    const {show} = this.state;
+    return (
+      <div className="App">
+        <Container maxWidth="lg">
+          <Header
+            items={[
+              {idItem: 1, title: 'Trang chủ', slug: '#home', current: true},
+              {idItem: 2, title: 'Sản phẩm', slug: 'products'},
+              {idItem: 3, title: 'Chủ đề', slug: 'tags'},
+              {idItem: 4, title: 'Giỏ hàng', slug: 'carts'},
+              {idItem: 5, title: 'Liên hệ', slug: 'contact'},
+            ]}
+          />
+          <Grid container item xs={12} spacing={3}>
+            <Grid item xs={3}>
+              <TagList
+                title="Test Tag"
+                tags={[
+                  {idTag: 1, title: 'Title Tag 1', slug: 'tag-1', icon: 'headphones'},
+                  {idTag: 2, title: 'Title Tag 2', slug: 'tag-2', icon: 'gamepad'},
+                  {idTag: 3, title: 'Title Tag 3', slug: 'tag-3', icon: 'keyboard'},
+                  {idTag: 4, title: 'Title Tag 4', slug: 'tag-4', icon: 'terminal'},
+                  {idTag: 5, title: 'Title Tag 5', slug: 'tag-5', icon: 'gamepad'},
+                  {idTag: 6, title: 'Title Tag 6', slug: 'tag-6', icon: 'keyboard'},
+                ]}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <BannerBox
+                variant={1}
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_03_x1024.png?v=1551554827"
+                title="Test banner 1"
+                content="Test content 1"
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <BannerBox
+                variant={2}
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_04_x1024.png?v=1551554827"
+                title="Test banner 2"
+                content="Test Content 2"
+              />
+            </Grid>
+          </Grid>
+          <Grid container item xs={12} spacing={3}>
+            <Grid item xs={3}>
+              <TagItem
+                slug="/men"
+                title="#Men"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_15_x100.png?v=1551554828"
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TagItem
+                slug="/men"
+                title="#Men"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_11_x100.png?v=1551554827"
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TagItem
+                slug="/men"
+                title="#Men"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_15_x100.png?v=1551554828"
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TagItem
+                slug="/men"
+                title="#Men"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_11_x100.png?v=1551554827"
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TagItem
+                slug="/men"
+                title="#Men"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_15_x100.png?v=1551554828"
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TagItem
+                slug="/men"
+                title="#Men"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_11_x100.png?v=1551554827"
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TagItem
+                slug="/men"
+                title="#Men"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_15_x100.png?v=1551554828"
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <TagItem
+                slug="/men"
+                title="#Men"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_11_x100.png?v=1551554827"
+              />
+            </Grid>
+          </Grid>
+          <Grid container item xs={12} spacing={3}>
+            <Grid item xs={3}>
+              <CollectionList
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_06_220x.png?v=1551972448"
+                title="Test Collection List 1"
+                collections={[
+                  {idCollection: 1, title: 'Collection 1', current: true},
+                  {idCollection: 2, title: 'Collection 2'},
+                  {idCollection: 3, title: 'Collection 3'},
+                ]}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <ProductItem
+                label="hot"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Relaxed-Fit_Cotton_Shirt_4_600x.jpg?v=1542375186"
+                title="Standard Fit Sport Shirt 2"
+                slug="/product-3"
+                primaryPrice={120000}
+                salePrice={100000}
+                handleAddToCart={this.handleAddToCart}
+                back
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <ProductItem
+                label="hot"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Relaxed-Fit_Cotton_Shirt_4_600x.jpg?v=1542375186"
+                title="Standard Fit Sport Shirt 2"
+                slug="/product-3"
+                primaryPrice={120000}
+                salePrice={100000}
+                handleAddToCart={this.handleAddToCart}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <ProductItem
+                label="sale"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Relaxed-Fit_Cotton_Shirt_4_600x.jpg?v=1542375186"
+                title="Standard Fit Sport Shirt 3"
+                slug="/product-3"
+                primaryPrice={150000}
+                salePrice={120000}
+                handleAddToCart={this.handleAddToCart}
+                next
+              />
+            </Grid>
+          </Grid>
+          <Grid container item xs={12} spacing={3}>
+            <Grid item xs={3}>
+              <CollectionList
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_05_220x.png?v=1551972449"
+                title="Test Collection 2"
+                collections={[
+                  {idCollection: 1, title: 'Collection 1', current: true},
+                  {idCollection: 2, title: 'Collection 2'},
+                  {idCollection: 3, title: 'Collection 3'},
+                ]}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <ProductItem
+                label="hot"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Relaxed-Fit_Cotton_Shirt_4_600x.jpg?v=1542375186"
+                title="Standard Fit Sport Shirt 2"
+                slug="/product-3"
+                primaryPrice={120000}
+                salePrice={100000}
+                handleAddToCart={this.handleAddToCart}
+                back
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <ProductItem
+                label="hot"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Relaxed-Fit_Cotton_Shirt_4_600x.jpg?v=1542375186"
+                title="Standard Fit Sport Shirt 2"
+                slug="/product-3"
+                primaryPrice={120000}
+                salePrice={100000}
+                handleAddToCart={this.handleAddToCart}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <ProductItem
+                label="sale"
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Relaxed-Fit_Cotton_Shirt_4_600x.jpg?v=1542375186"
+                title="Standard Fit Sport Shirt 3"
+                slug="/product-3"
+                primaryPrice={150000}
+                salePrice={120000}
+                handleAddToCart={this.handleAddToCart}
+                next
+              />
+            </Grid>
+          </Grid>
+          <Grid container item xs={12} spacing={3}>
+            <Grid item xs={6}>
+              <BannerBox
+                variant={3}
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_01_1024x.png?v=1551554827"
+                title="Test banner 1"
+                content="Test content 1"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <BannerBox
+                variant={3}
+                image="https://cdn.shopify.com/s/files/1/0130/5041/3114/files/lay20_02_600x.png?v=1551554828"
+                title="Test banner 2"
+                content="Test Content 2"
+              />
+            </Grid>
+          </Grid>
+          <ProductQuickView
+            show={show}
+            handleClose={this.handleClose}
+            message="Thêm sản phẩm vào giỏ hàng thành công"
+            product={{
+              idProduct: 1,
+              image:
+                'https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Relaxed-Fit_Cotton_Shirt_4_600x.jpg?v=1542375186',
+              title: 'Product title',
+              primaryPrice: 150000,
+              salePrice: 120000,
+            }}
+            cart={{
+              totalItem: 6,
+              totalPrice: 6500000,
+            }}
+            customTitle="Custom title"
+            customProducts={[
+              {
+                idProduct: 1,
+                image:
+                  'https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Faxon_Canvas_Low-Top_Sneaker_1_8a94289f-c9c8-4e47-afa1-c436717fc271_grande.jpg?v=1570224236',
+                title: 'Custom product title 1',
+                slug: 'custom-product-title-1',
+                price: 190000,
+              },
+              {
+                idProduct: 2,
+                image:
+                  'https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Faxon_Canvas_Low-Top_Sneaker_1_8a94289f-c9c8-4e47-afa1-c436717fc271_grande.jpg?v=1570224236',
+                title: 'Custom product title 2',
+                slug: 'custom-product-title-2',
+                price: 160000,
+              },
+              {
+                idProduct: 3,
+                image:
+                  'https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Faxon_Canvas_Low-Top_Sneaker_1_8a94289f-c9c8-4e47-afa1-c436717fc271_grande.jpg?v=1570224236',
+                title: 'Custom product title 3',
+                slug: 'custom-product-title-3',
+                price: 180000,
+              },
+              {
+                idProduct: 4,
+                image:
+                  'https://cdn.shopify.com/s/files/1/0130/5041/3114/products/Faxon_Canvas_Low-Top_Sneaker_1_8a94289f-c9c8-4e47-afa1-c436717fc271_grande.jpg?v=1570224236',
+                title: 'Custom product title 4',
+                slug: 'custom-product-title-4',
+                price: 100000,
+              },
+            ]}
+          />
+        </Container>
+        <Container maxWidth={false}>
+          <Footer
+            collections={[
+              {idCollection: 1, title: 'Collection 1', slug: 'collection-1'},
+              {idCollection: 2, title: 'Collection 2', slug: 'collection-2'},
+              {idCollection: 3, title: 'Collection 3', slug: 'collection-3'},
+            ]}
+          />
+        </Container>
+      </div>
+    );
+  };
+}
+
+export default App;
